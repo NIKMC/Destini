@@ -36,13 +36,13 @@ class ViewController: UIViewController {
     
     // TODO Step 5: Initialise instance variables here
     
-    
+//    var storyIndex : Int = 1
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        updateUIViews(story: story1, answer1: answer1a, answer2: answer1b)
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
         
     }
@@ -50,12 +50,75 @@ class ViewController: UIViewController {
     
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
-    
+        //first solution
+        
+//        if sender.tag == 1 {
+//            if storyIndex == 1 {
+//                storyIndex = 3
+//                updateUIViews(story: story3, answer1: answer3a, answer2: answer3b)
+//            } else if storyIndex == 2 {
+//                storyIndex = 3
+//                updateUIViews(story: story3, answer1: answer3a, answer2: answer3b)
+//            } else if storyIndex == 3 {
+//                storyIndex = 6
+//                updateUIViews(story: story6, answer1: nil, answer2: nil)
+//            }
+//        } else if sender.tag == 2 {
+//            if storyIndex == 1 {
+//                storyIndex = 2
+//                updateUIViews(story: story2, answer1: answer2a, answer2: answer2b)
+//            } else if storyIndex == 2 {
+//                storyIndex = 4
+//                updateUIViews(story: story4, answer1: nil, answer2: nil)
+//            } else if storyIndex == 3 {
+//                storyIndex = 5
+//                updateUIViews(story: story5, answer1: nil, answer2: nil)
+//            }
+//        }
+        
+        //second solution
+        if sender.tag == 1 {
+            if storyTextView.text == story1 {
+                updateUIViews(story: story3, answer1: answer3a, answer2: answer3b)
+            } else if storyTextView.text == story2 {
+                updateUIViews(story: story3, answer1: answer3a, answer2: answer3b)
+            } else if storyTextView.text == story3 {
+                updateUIViews(story: story6, answer1: nil, answer2: nil)
+            } else if sender.currentTitle == "Restart" {
+                bottomButton.isHidden = false
+                updateUIViews(story: story1, answer1: answer1a, answer2: answer1b)
+            }
+        } else if sender.tag == 2 {
+            if storyTextView.text == story1 {
+                updateUIViews(story: story2, answer1: answer2a, answer2: answer2b)
+            } else if storyTextView.text == story2 {
+                updateUIViews(story: story4, answer1: nil, answer2: nil)
+            } else if storyTextView.text == story3 {
+                updateUIViews(story: story5, answer1: nil, answer2: nil)
+            }
+        }
+        
         // TODO Step 4: Write an IF-Statement to update the views
                 
         // TODO Step 6: Modify the IF-Statement to complete the story
         
     
+    }
+    
+    func updateUIViews(story : String,answer1 : String?,answer2 : String?) {
+        storyTextView.text = story
+        if let answerTop = answer1 {
+            topButton.setTitle(answerTop, for: .normal)
+        } else {
+            topButton.setTitle("Restart", for: .normal)
+        }
+        if let answerBottom = answer2 {
+            bottomButton.setTitle(answerBottom, for: .normal)
+        } else {
+            bottomButton.isHidden = true
+        }
+        
+        
     }
     
 
